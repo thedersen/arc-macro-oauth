@@ -2,7 +2,7 @@
 
 Use OAuth authentication with [Architect](https://arc.codes) HTTP APIs (APIG HTTP Api only).
 
-###Install:
+### Install:
 
 `npm i arc-macro-oauth`
 
@@ -11,6 +11,9 @@ Add to your .arc-file:
 ```arc
 @app
 myapp
+
+@aws
+apigateway http
 
 @oauth
 default true #Secure all routes by default

@@ -2,3 +2,4 @@
 .arc-env
 node_modules/
 sam.json
+sam.yaml
