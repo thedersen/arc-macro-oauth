@@ -1,0 +1,40 @@
+{
+  "name": "arc-macro-oauth",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Thomas Pedersen <hei@thomas.pe>",
+  "license": "MIT",
+  "main": "src/macros/arc-macro-oauth.js",
+  "scripts": {
+    "lint": "xo --fix",
+    "build-auth": "ncc build src/handlers/auth-handler-deps.js --out dist/auth-handler/auth-handler-deps --external aws-sdk && cp src/handlers/auth-handler.js dist/auth-handler/index.js",
+    "build-login": "ncc build src/handlers/login-handler-deps.js --out dist/login-handler/login-handler-deps --external aws-sdk && cp src/handlers/login-handler.js dist/login-handler/index.js",
+    "copy": "mkdir -p ./node_modules/arc-macro-oauth/dist && cp -r ./dist/* ./node_modules/arc-macro-oauth/dist",
+    "build": "npm run build-auth && npm run build-login && npm run copy",
+    "deploy": "npm run build && npx arc deploy"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thedersen/arc-macro-oauth.git"
+  },
+  "xo": {
+    "prettier": true,
+    "space": 2
+  },
+  "prettier": {
+    "trailingComma": "es5"
+  },
+  "dependencies": {
+    "@architect/functions": "^3.12.1",
+    "fs-extra": "^9.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.7.0",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@architect/architect": "^6.6.0-RC.0",
+    "@zeit/ncc": "^0.22.3",
+    "xo": "^0.32.1"
+  }
+}
