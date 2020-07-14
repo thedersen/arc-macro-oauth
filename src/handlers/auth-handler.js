@@ -143,6 +143,17 @@ async function callback(request, options) {
   };
 }
 
+async function getSession(request) {
+  const session = await http.session.read(request);
+  return {
+    statusCode: 200,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(session),
+  };
+}
+
 function handler(options) {
   return async function (request) {
     switch (request.pathParameters.path) {
@@ -152,6 +163,8 @@ function handler(options) {
         return logout(request, options);
       case 'callback':
         return callback(request, options);
+      case 'session':
+        return getSession(request);
       default:
         return {
           statusCode: 404,
