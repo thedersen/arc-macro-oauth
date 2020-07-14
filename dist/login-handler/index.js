@@ -28,7 +28,7 @@ exports.handler = async function (request, context) {
         };
       }
     }
-
+    request.session = session;
     const response = await originalHandler(request, context);
     response.headers['Cache-Control'] = 'no-store';
     return response;
